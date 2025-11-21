@@ -1,5 +1,6 @@
 package municipaldata.ui;
 
+import municipaldata.common.ResidentialMode;
 import municipaldata.processor.*;
 
 import java.util.*;
@@ -11,11 +12,12 @@ public class MainMenu {
     protected AverageResidential averageResidential;
     protected ResidentialMarketValuePerCapita residentialMarketValuePerCapita;
 
-    public MainMenu(TotalPopulation tp, FinesPerCapita fpc, AverageResidential ar, ResidentialMarketValuePerCapita rmvpc) {
+    // TODO: Add back ResidentialMarketValuePerCapita rmvpc as last parameter
+    public MainMenu(TotalPopulation tp, FinesPerCapita fpc, AverageResidential ar) {
         totalPopulation = tp;
         finesPerCapita = fpc;
         averageResidential = ar;
-        residentialMarketValuePerCapita = rmvpc;
+//        residentialMarketValuePerCapita = rmvpc;
     }
 
     public void start() {
@@ -41,17 +43,36 @@ public class MainMenu {
                 continue;
             }
 
-            switch (selection) {
-                case 1:
-                    System.out.println(totalPopulation.getTotalPopulation());
-                    break;
-                case 2:
-                    TreeSet<String> finesPerZip = finesPerCapita.getFinesPerZip();
-                    for (String line : finesPerZip) {
-                        System.out.println(line);
-                    }
-                    break;
+            if (selection == 0) {
+                System.exit(0);
+            } else if (selection == 1) {
+                System.out.println(totalPopulation.getTotalPopulation());
+            } else if (selection == 2) {
+                TreeSet<String> finesPerZip = finesPerCapita.getFinesPerZip();
+                for (String line : finesPerZip) {
+                    System.out.println(line);
+                }
+            } else if (selection == 3 || selection == 4) {
+                System.out.println("Please enter a ZIP code:");
+                String zip = in.nextLine();
 
+                if (zip == null || zip.isBlank() || zip.isEmpty()) {
+                    break;
+                }
+                try {
+                    int i = Integer.parseInt(zip);
+                    if (i <= 0) {
+                        throw new NumberFormatException();
+                    }
+                } catch (NumberFormatException nfe) {
+                    break;
+                }
+
+                if (selection == 3) {
+                    System.out.println(averageResidential.getAverageResidential(ResidentialMode.MARKET_VALUE, zip));
+                } else if (selection == 4) {
+                    System.out.println(averageResidential.getAverageResidential(ResidentialMode.TOTAL_LIVABLE_AREA, zip));
+                }
             }
 
         }

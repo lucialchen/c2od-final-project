@@ -19,7 +19,7 @@ public class PopulationReader {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] fields = line.split(",", -1);
+                String[] fields = line.split(" ", -1);
                 
                 if (fields.length != 2) {
                     continue;

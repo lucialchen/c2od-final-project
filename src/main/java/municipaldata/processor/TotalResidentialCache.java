@@ -1,47 +1,82 @@
 package municipaldata.processor;
 
 import municipaldata.common.PropertyValue;
+import municipaldata.common.ResidentialMode;
 import municipaldata.data.PropertyValueReader;
 
 import java.util.*;
 
-public class TotalMarketValueCache {
+public class TotalResidentialCache {
 
-    private static TotalMarketValueCache instance;
-    private Map<String, Float> map;
+    private static TotalResidentialCache areaInstance;
+    private static TotalResidentialCache valueInstance;
 
-    public TotalMarketValueCache() {
+    private ResidentialMode mode;
+    private Map<String, CacheRecord> map;
+
+    private TotalResidentialCache(ResidentialMode m) {
+        mode = m;
         map = new HashMap<>();
     }
 
-    public static TotalMarketValueCache getInstance() {
-        if (instance == null) {
-            instance = new TotalMarketValueCache();
+    public static TotalResidentialCache getInstance(ResidentialMode m) {
+        if (m == ResidentialMode.TOTAL_LIVABLE_AREA) {
+            if (areaInstance == null) {
+                areaInstance = new TotalResidentialCache(m);
+            }
+            return areaInstance;
         }
-        return instance;
+        else {
+            if (valueInstance == null) {
+                valueInstance = new TotalResidentialCache(m);
+            }
+            return valueInstance;
+        }
     }
 
-    public Float checkMarketValue(String zip) {
+    public CacheRecord check(String zip) {
         return map.get(zip);
     }
 
-    public void updateMarketValue(String zip, float totalValue) {
-        map.put(zip, totalValue);
+    public void update(String zip, CacheRecord val) {
+        map.put(zip, val);
     }
 
-    public Float calculateMarketValue(String zip, PropertyValueReader pvr) {
-        Map<String, ArrayList<PropertyValue>> map = pvr.getPropertyValues();
-        ArrayList<PropertyValue> propertyValues = map.get(zip);
-        float total = 0.0F;
+    public CacheRecord get(String zip, PropertyValueReader pvr) {
 
-        if (propertyValues != null) {
-            total = propertyValues
-                    .stream()
-                    .map(pv -> pv.getMarketValue())
-                    .reduce(0.0f, (tot, next) -> tot + next);
+        if (check(zip) != null) {
+            return check(zip);
         }
 
-        updateMarketValue(zip, total);
-        return total;
+        Map<String, ArrayList<PropertyValue>> map = pvr.getPropertyValues();
+        ArrayList<PropertyValue> propertyValues = map.get(zip);
+
+        CacheRecord record;
+
+        // Referenced https://www.geeksforgeeks.org/java/java-util-doublesummarystatistics-class-with-examples/
+        if (propertyValues != null) {
+            DoubleSummaryStatistics dss;
+            if (mode == ResidentialMode.MARKET_VALUE) {
+                dss = propertyValues
+                        .stream()
+                        .map(pv -> pv.getMarketValue())
+                        .mapToDouble(d -> d)
+                        .summaryStatistics();
+            } else
+            {
+                dss = propertyValues
+                        .stream()
+                        .map(pv -> pv.getTotalLivableArea())
+                        .mapToDouble(d -> d)
+                        .summaryStatistics();
+            }
+            record = new CacheRecord(dss.getCount(), dss.getSum());
+        }
+        else {
+            record = new CacheRecord(0, 0);
+        }
+
+        update(zip, record);
+        return record;
     }
 }

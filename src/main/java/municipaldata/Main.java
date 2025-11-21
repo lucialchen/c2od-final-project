@@ -31,14 +31,14 @@ public class Main {
         PopulationReader populations = new PopulationReader(populationFile);
 
         // Processing tier
-        TotalMarketValueCache tmvc = TotalMarketValueCache.getInstance();
         TotalPopulation tp = new TotalPopulation(populations);
         FinesPerCapita fpc = new FinesPerCapita(populations, violations);
-        AverageResidential ar = new AverageResidential(properties, tmvc);
-        ResidentialMarketValuePerCapita rmvpc = new ResidentialMarketValuePerCapita(populations, properties, tmvc);
+        AverageResidential ar = new AverageResidential(properties);
+// TODO:       ResidentialMarketValuePerCapita rmvpc = new ResidentialMarketValuePerCapita(populations, properties);
 
         // UI tier
-        MainMenu menu = new MainMenu(tp, fpc, ar, rmvpc);
+        // TODO: add back rmvpc
+        MainMenu menu = new MainMenu(tp, fpc, ar);
 
         menu.start();
 

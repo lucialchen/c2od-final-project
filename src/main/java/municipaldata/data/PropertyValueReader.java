@@ -16,6 +16,8 @@ public class PropertyValueReader {
         map = readData();
     }
 
+    // TODO: Make sure error handling as specified works so that it properly ignores the missing/incorrect values while retaining the rest
+    // I.e., make the PropertyValue object for each pass and fill in the blanks with nulls if needed while reading data
     private Map<String, ArrayList<PropertyValue>> readData()  {
         Map<String, ArrayList<PropertyValue>> map = new TreeMap<>();
 
@@ -36,7 +38,7 @@ public class PropertyValueReader {
                 String field = fields[i].trim().toLowerCase();
                 if (field.equals("market_value")) {
                     marketIdx = i;
-                } else if (field.equals("living_area")) {
+                } else if (field.equals("total_livable_area")) {
                     livAreaIdx = i;
                 } else if (field.equals("zip_code")) {
                     zipIdx = i;
@@ -52,8 +54,8 @@ public class PropertyValueReader {
             while ((line = br.readLine()) != null) {
                 String[] dataFields = line.split(",", -1);
                 try {
-                    float marketValue = Float.parseFloat(dataFields[marketIdx]);
-                    float livableArea = Float.parseFloat(dataFields[livAreaIdx]);
+                    double marketValue = Double.parseDouble(dataFields[marketIdx]);
+                    double livableArea = Double.parseDouble(dataFields[livAreaIdx]);
                     String zip = dataFields[zipIdx];
                     String zipCode = "";
                     if (zip.length() >= 5) {

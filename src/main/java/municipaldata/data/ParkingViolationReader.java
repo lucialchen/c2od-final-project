@@ -1,5 +1,6 @@
 package municipaldata.data;
 
+import com.sun.source.tree.Tree;
 import municipaldata.common.*;
 import java.util.*;
 
@@ -21,7 +22,7 @@ public class ParkingViolationReader {
         }
 
         ArrayList<ParkingViolation> violations = parkViolationFileType.readData();
-        Map map = new TreeMap<>();
+        map = new TreeMap<>();
 
         for (ParkingViolation pv : violations) {
             String zip = pv.getZip();

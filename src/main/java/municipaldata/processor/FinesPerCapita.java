@@ -32,6 +32,10 @@ public class FinesPerCapita {
             int pop = populationEntry.getValue();
 
             List<ParkingViolation> violations = violationsMap.get(zip);
+            if (violations == null) {
+                continue;
+            }
+
             double totalFines = 0.0;
 
             for (ParkingViolation violation : violations) {

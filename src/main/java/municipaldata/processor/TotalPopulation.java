@@ -17,7 +17,6 @@ public class TotalPopulation {
         totalPopulation = populationReader.getPopulationData()
                 .values()
                 .stream()
-                .map(i -> i)
                 .reduce(0, (total, next) -> total + next);
 
         return totalPopulation;
