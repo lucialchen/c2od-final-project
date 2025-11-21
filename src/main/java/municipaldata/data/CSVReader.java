@@ -12,7 +12,8 @@ public class CSVReader implements ParkViolationFileType {
         this.filePath = filePath;
     }
 
-    public ArrayList<String[]> readData() throws IOException {
+    @Override
+    public ArrayList<ParkingViolation> readData() throws IOException {
         ArrayList<ParkingViolation> data = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
