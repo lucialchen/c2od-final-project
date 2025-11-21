@@ -17,7 +17,7 @@ public class JSONReader implements ParkViolationFileType {
     }
 
     @Override
-    public ArrayList<ParkingViolation> readData() throws IOException {
+    public ArrayList<ParkingViolation> readData() {
         ArrayList<ParkingViolation> data = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             JSONParser parser = new JSONParser();

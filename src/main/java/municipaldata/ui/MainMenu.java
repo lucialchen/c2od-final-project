@@ -1,9 +1,8 @@
 package municipaldata.ui;
 
-import municipaldata.data.PopulationReader;
 import municipaldata.processor.*;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class MainMenu {
 
@@ -44,8 +43,6 @@ public class MainMenu {
 
             switch (selection) {
 
-                case 1:
-                    totalPopulation.getTotalPopulation();
             }
 
         }

@@ -26,7 +26,7 @@ public class Main {
         String populationFile = args[3];
 
         // Data tier
-        ParkingViolationReader violations = new ParkingViolationReader(parkingViolationsFile);
+        ParkingViolationReader violations = new ParkingViolationReader(csvOrJson, parkingViolationsFile);
         PropertyValueReader properties = new PropertyValueReader(propertyValuesFile);
         PopulationReader populations = new PopulationReader(populationFile);
 

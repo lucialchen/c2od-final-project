@@ -6,5 +6,5 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public interface ParkViolationFileType {
-    public ArrayList<ParkingViolation> readData() throws IOException;
+    public ArrayList<ParkingViolation> readData();
 }

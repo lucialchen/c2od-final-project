@@ -19,4 +19,16 @@ public class ParkingViolation {
         this.violID = violID;
         this.zip = zip;
     }
+
+    public int getZip() {
+        return zip;
+    }
+
+    public float getFine() {
+        return fine;
+    }
+
+    public String getState() {
+        return state;
+    }
 }
