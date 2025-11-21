@@ -18,7 +18,7 @@ public class JSONReader implements ParkViolationFileType {
 
     @Override
     public ArrayList<ParkingViolation> readData() throws IOException {
-        List<ParkingViolation> data = new ArrayList<>();
+        ArrayList<ParkingViolation> data = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             JSONParser parser = new JSONParser();
             JSONArray violations = (JSONArray) parser.parse(br);
@@ -43,7 +43,9 @@ public class JSONReader implements ParkViolationFileType {
             }
         } catch (Exception e) {
             System.err.println("Error opening or reading JSON file: " + filePath);
-            return new ArrayList<>(data);
+            return data;
         }
+
+        return data;
     }
 }
