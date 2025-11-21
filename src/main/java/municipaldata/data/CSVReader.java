@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import municipaldata.common.ParkingViolation;
 
-public class CSVReader {
+public class CSVReader implements ParkViolationFileType {
     private String filePath;
 
     public CSVReader(String filePath) {
@@ -13,21 +13,34 @@ public class CSVReader {
     }
 
     public ArrayList<String[]> readData() throws IOException {
-        ArrayList<String[]> data = new ArrayList<>();
+        ArrayList<ParkingViolation> data = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] fields = line.split(",", -1);
-                String timeStamp = fields[0];
-                int fine = Integer.parseInt(fields[1]);
-                String description = fields[2];
-                int vehID = Integer.parseInt(fields[3]);
-                String state = fields[4];
-                int violID = Integer.parseInt(fields[5]);
-                int zip = Integer.parseInt(fields[6]);
-                ParkingViolation violation = new ParkingViolation(timeStamp, fine, description, vehID, state, violID, zip);
-                data.add(fields);
+                
+                if (fields.length != 7) {
+                    continue;
+                }
+
+                try {
+                    String timeStamp = fields[0];
+                    int fine = Integer.parseInt(fields[1]);
+                    String description = fields[2];
+                    int vehID = Integer.parseInt(fields[3]);
+                    String state = fields[4];
+                    int violID = Integer.parseInt(fields[5]);
+                    int zip = Integer.parseInt(fields[6]);
+                    ParkingViolation violation = new ParkingViolation(timeStamp, fine, description, vehID, state, violID, zip);
+                    data.add(violation);
+                } catch (NumberFormatException e) {
+                    continue;
+                }
+                
             }
+        } catch (IOException e) {
+            System.err.println("Error opening or reading CSV file: " + filePath);
+            return data;
         }
         return data;
     }

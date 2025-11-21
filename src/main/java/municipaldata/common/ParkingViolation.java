@@ -2,14 +2,14 @@ package municipaldata.common;
 
 public class ParkingViolation {
     String timeStamp;
-    int fine;
+    float fine;
     String description;
     int vehID;
     String state;
     int violID;
     int zip;
 
-    public ParkingViolation(String timeStamp, int fine, String description, int vehID, 
+    public ParkingViolation(String timeStamp, float fine, String description, int vehID, 
     String state, int violID, int zip) {
         this.timeStamp = timeStamp;
         this.fine = fine;
