@@ -14,15 +14,11 @@ public class TotalPopulation {
             return totalPopulation;
         }
 
-        int total = 0;
-        try {
-            for (int population : populationReader.getPopulationData().values()) {
-                total += population;
-            }
-        } catch (Exception e) {
-            System.err.println("Error calculating total population: " + e.getMessage());
-        }
-        totalPopulation = total;
+        totalPopulation = populationReader.getPopulationData()
+                .values()
+                .stream()
+                .map(i -> i)
+                .reduce(0, (a, b) -> a + b);
         return totalPopulation;
     }
 }
