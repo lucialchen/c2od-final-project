@@ -1,6 +1,9 @@
 package municipaldata.ui;
 
+import municipaldata.data.PopulationReader;
 import municipaldata.processor.*;
+
+import java.util.Scanner;
 
 public class MainMenu {
 
@@ -18,6 +21,34 @@ public class MainMenu {
 
     public void start() {
 
+        Scanner in = new Scanner(System.in);
+
+        while (true) {
+
+            System.out.print("Please enter...\n" +
+                    "\"1\" for Total Population for All Zip Codes\n" +
+                    "\"2\" for Fines Per Capita\n" +
+                    "\"3\" for Average Residential Market Value\n" +
+                    "\"4\" for Average Residential Total Livable Area\n" +
+                    "\"5\" for Residential Market Value Per Capita\n" +
+                    "\"0\" to end the program\n");
+
+            String response = in.nextLine();
+            int selection;
+
+            try {
+                selection = Integer.parseInt(response);
+            } catch (NumberFormatException nfe) {
+                continue;
+            }
+
+            switch (selection) {
+
+                case 1:
+                    totalPopulation.getTotalPopulation();
+            }
+
+        }
     }
 }
 
