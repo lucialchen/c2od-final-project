@@ -7,10 +7,10 @@ public class ParkingViolation {
     int vehID;
     String state;
     int violID;
-    int zip;
+    String zip;
 
     public ParkingViolation(String timeStamp, float fine, String description, int vehID, 
-    String state, int violID, int zip) {
+    String state, int violID, String zip) {
         this.timeStamp = timeStamp;
         this.fine = fine;
         this.description = description;
@@ -20,7 +20,7 @@ public class ParkingViolation {
         this.zip = zip;
     }
 
-    public int getZip() {
+    public String getZip() {
         return zip;
     }
 

@@ -21,7 +21,7 @@ public class ParkingViolationReader {
         }
 
         ArrayList<ParkingViolation> violations = parkViolationFileType.readData();
-        map = new HashMap<>();
+        Map map = new HashMap<>();
 
         for (ParkingViolation pv : violations) {
             int zip = pv.getZip();

@@ -31,7 +31,7 @@ public class CSVReader implements ParkViolationFileType {
                     int vehID = Integer.parseInt(fields[3]);
                     String state = fields[4];
                     int violID = Integer.parseInt(fields[5]);
-                    int zip = Integer.parseInt(fields[6]);
+                    String zip = fields[6];
                     ParkingViolation violation = new ParkingViolation(timeStamp, fine, description, vehID, state, violID, zip);
                     data.add(violation);
                 } catch (NumberFormatException e) {

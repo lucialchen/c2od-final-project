@@ -31,7 +31,7 @@ public class JSONReader implements ParkViolationFileType {
                     int vehID = Integer.parseInt(violationJSON.get("vehID").toString());
                     String state = (String) violationJSON.get("state");
                     int violID = Integer.parseInt(violationJSON.get("violID").toString());
-                    int zip = Integer.parseInt(violationJSON.get("zip").toString());
+                    String zip = violationJSON.get("zip").toString();
 
                     ParkingViolation violation = new ParkingViolation(timeStamp, fine, description, vehID, state, violID, zip);
                     data.add(violation);
