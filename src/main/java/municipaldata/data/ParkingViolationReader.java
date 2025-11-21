@@ -5,7 +5,7 @@ import java.util.*;
 
 public class ParkingViolationReader {
 
-    protected Map<Integer, ArrayList<ParkingViolation>> map;
+    protected Map<String, ArrayList<ParkingViolation>> map;
     protected ParkViolationFileType parkViolationFileType;
 
     public ParkingViolationReader(String csvOrJson, String filename) {
@@ -21,17 +21,25 @@ public class ParkingViolationReader {
         }
 
         ArrayList<ParkingViolation> violations = parkViolationFileType.readData();
-        Map map = new HashMap<>();
+        Map map = new TreeMap<>();
 
         for (ParkingViolation pv : violations) {
-            int zip = pv.getZip();
-            ArrayList<ParkingViolation> zipViolations = map.getOrDefault(zip, new ArrayList<>());
+            String zip = pv.getZip();
+            if (zip == null || zip.isEmpty() || zip.length() < 5) {
+                continue;
+            }
+
+            if (zip.length() != 5) {
+                zip = zip.substring(0, 5);
+            }
+
+            ArrayList<ParkingViolation> zipViolations = (ArrayList<ParkingViolation>) map.getOrDefault(zip, new ArrayList<>());
             zipViolations.add(pv);
             map.put(zip, zipViolations);
         }
     }
 
-    public Map<Integer, ArrayList<ParkingViolation>> getViolations() {
+    public Map<String, ArrayList<ParkingViolation>> getViolations() {
         return map;
     }
 }

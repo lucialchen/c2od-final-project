@@ -42,6 +42,15 @@ public class MainMenu {
             }
 
             switch (selection) {
+                case 1:
+                    System.out.println(totalPopulation.getTotalPopulation());
+                    break;
+                case 2:
+                    TreeSet<String> finesPerZip = finesPerCapita.getFinesPerZip();
+                    for (String line : finesPerZip) {
+                        System.out.println(line);
+                    }
+                    break;
 
             }
 

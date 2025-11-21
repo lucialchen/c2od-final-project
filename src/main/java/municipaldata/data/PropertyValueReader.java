@@ -1,17 +1,30 @@
 package municipaldata.data;
+import com.sun.source.tree.Tree;
+import municipaldata.common.*;
+import java.util.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class PropertyValueReader {
 
-    public void readData(String filePath) throws IOException {
+    private String filePath;
+    private Map<String, ArrayList<PropertyValue>> map;
+
+    public PropertyValueReader(String fn) {
+        filePath = fn;
+        map = readData();
+    }
+
+    private Map<String, ArrayList<PropertyValue>> readData()  {
+        Map<String, ArrayList<PropertyValue>> map = new TreeMap<>();
+
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String header = br.readLine();
 
             if (header == null) {
                 System.err.println("Empty property value file: " + filePath);
-                return;
+                return map;
             }
 
             String[] fields = header.split(",", -1);
@@ -32,7 +45,7 @@ public class PropertyValueReader {
 
             if (marketIdx == -1 || livAreaIdx == -1 || zipIdx == -1) {
                 System.err.println("Missing required fields in property value file header: " + filePath);
-                return;
+                return map;
             }
 
             String line;
@@ -50,14 +63,24 @@ public class PropertyValueReader {
                     }
                     
                     PropertyValue propertyValue = new PropertyValue(marketValue, livableArea, zipCode);
+
+                    ArrayList<PropertyValue> propertiesList = map.getOrDefault(zipCode, new ArrayList<>());
+                    propertiesList.add(propertyValue);
+                    map.put(zipCode, propertiesList);
                 } catch (NumberFormatException e) {
-                    System.err.println("Error: Number format issue in property value entry: " + e.getMessage());
+                    System.out.println("Error: Number format issue in property value entry: " + e.getMessage());
                     continue;
                 }
             }
         } catch (IOException e) {
-            System.err.println("Error opening or reading property value file: " + filePath);
-            return;
+            System.out.println("Error opening or reading property value file: " + filePath);
+            return map;
         }
+
+        return map;
+    }
+
+    public Map<String, ArrayList<PropertyValue>> getPropertyValues() {
+        return map;
     }
 }
