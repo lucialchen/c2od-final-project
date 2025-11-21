@@ -35,9 +35,10 @@ public class TotalMarketValueCache {
         float total = 0.0F;
 
         if (propertyValues != null) {
-            for (PropertyValue value : propertyValues) {
-                total += value.getMarketValue();
-            }
+            total = propertyValues
+                    .stream()
+                    .map(pv -> pv.getMarketValue())
+                    .reduce(0.0f, (tot, next) -> tot + next);
         }
 
         updateMarketValue(zip, total);

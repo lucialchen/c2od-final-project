@@ -18,7 +18,8 @@ public class TotalPopulation {
                 .values()
                 .stream()
                 .map(i -> i)
-                .reduce(0, (a, b) -> a + b);
+                .reduce(0, (total, next) -> total + next);
+
         return totalPopulation;
     }
 }
