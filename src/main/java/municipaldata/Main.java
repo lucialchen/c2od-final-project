@@ -34,7 +34,7 @@ public class Main {
         TotalPopulation tp = new TotalPopulation(populations);
         FinesPerCapita fpc = new FinesPerCapita(populations, violations);
         AverageResidential ar = new AverageResidential(properties);
-        ResidentialMarketValuePerCapita rmvpc = new ResidentialMarketValuePerCapita(populations, properties);
+        ResidentialPerCapita rmvpc = new ResidentialPerCapita(populations, properties);
 
         // UI tier
         MainMenu menu = new MainMenu(tp, fpc, ar, rmvpc);

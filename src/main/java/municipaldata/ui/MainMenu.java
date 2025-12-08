@@ -10,9 +10,9 @@ public class MainMenu {
     protected TotalPopulation totalPopulation;
     protected FinesPerCapita finesPerCapita;
     protected AverageResidential averageResidential;
-    protected ResidentialMarketValuePerCapita residentialMarketValuePerCapita;
+    protected ResidentialPerCapita residentialMarketValuePerCapita;
 
-    public MainMenu(TotalPopulation tp, FinesPerCapita fpc, AverageResidential ar, ResidentialMarketValuePerCapita rmvpc) {
+    public MainMenu(TotalPopulation tp, FinesPerCapita fpc, AverageResidential ar, ResidentialPerCapita rmvpc) {
         totalPopulation = tp;
         finesPerCapita = fpc;
         averageResidential = ar;
@@ -31,6 +31,7 @@ public class MainMenu {
                     "\"3\" for Average Residential Market Value\n" +
                     "\"4\" for Average Residential Total Livable Area\n" +
                     "\"5\" for Residential Market Value Per Capita\n" +
+                    "\"6\" for Residential Total Livable Area Per Capita\n" +
                     "\"0\" to end the program\n");
 
             String response = in.nextLine();
@@ -51,7 +52,7 @@ public class MainMenu {
                 for (String line : finesPerZip) {
                     System.out.println(line);
                 }
-            } else if (selection == 3 || selection == 4 || selection == 5) {
+            } else if (selection == 3 || selection == 4 || selection == 5 || selection == 6) {
                 System.out.println("Please enter a ZIP code:");
                 String zip = in.nextLine();
 
@@ -72,7 +73,9 @@ public class MainMenu {
                 } else if (selection == 4) {
                     System.out.println(averageResidential.getAverageResidential(ResidentialMode.TOTAL_LIVABLE_AREA, zip));
                 } else if (selection == 5) {
-                    System.out.println(residentialMarketValuePerCapita.getMarketValuePerCapita(zip));
+                    System.out.println(residentialMarketValuePerCapita.getPerCapita(ResidentialMode.MARKET_VALUE, zip));
+                } else if (selection == 6) {
+                    System.out.println(residentialMarketValuePerCapita.getPerCapita(ResidentialMode.TOTAL_LIVABLE_AREA, zip));
                 }
             }
 
