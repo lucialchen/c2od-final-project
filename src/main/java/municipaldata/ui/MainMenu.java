@@ -10,13 +10,13 @@ public class MainMenu {
     protected TotalPopulation totalPopulation;
     protected FinesPerCapita finesPerCapita;
     protected AverageResidential averageResidential;
-    protected ResidentialPerCapita residentialMarketValuePerCapita;
+    protected ResidentialPerCapita residentialPerCapita;
 
-    public MainMenu(TotalPopulation tp, FinesPerCapita fpc, AverageResidential ar, ResidentialPerCapita rmvpc) {
+    public MainMenu(TotalPopulation tp, FinesPerCapita fpc, AverageResidential ar, ResidentialPerCapita rpc) {
         totalPopulation = tp;
         finesPerCapita = fpc;
         averageResidential = ar;
-        residentialMarketValuePerCapita = rmvpc;
+        residentialPerCapita = rpc;
     }
 
     public void start() {
@@ -73,9 +73,9 @@ public class MainMenu {
                 } else if (selection == 4) {
                     System.out.println(averageResidential.getAverageResidential(ResidentialMode.TOTAL_LIVABLE_AREA, zip));
                 } else if (selection == 5) {
-                    System.out.println(residentialMarketValuePerCapita.getPerCapita(ResidentialMode.MARKET_VALUE, zip));
+                    System.out.println(residentialPerCapita.getPerCapita(ResidentialMode.MARKET_VALUE, zip));
                 } else if (selection == 6) {
-                    System.out.println(residentialMarketValuePerCapita.getPerCapita(ResidentialMode.TOTAL_LIVABLE_AREA, zip));
+                    System.out.println(residentialPerCapita.getPerCapita(ResidentialMode.TOTAL_LIVABLE_AREA, zip));
                 }
             }
 

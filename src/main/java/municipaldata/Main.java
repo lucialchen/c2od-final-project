@@ -34,10 +34,10 @@ public class Main {
         TotalPopulation tp = new TotalPopulation(populations);
         FinesPerCapita fpc = new FinesPerCapita(populations, violations);
         AverageResidential ar = new AverageResidential(properties);
-        ResidentialPerCapita rmvpc = new ResidentialPerCapita(populations, properties);
+        ResidentialPerCapita rpc = new ResidentialPerCapita(populations, properties);
 
         // UI tier
-        MainMenu menu = new MainMenu(tp, fpc, ar, rmvpc);
+        MainMenu menu = new MainMenu(tp, fpc, ar, rpc);
 
         menu.start();
 
