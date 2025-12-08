@@ -12,12 +12,11 @@ public class MainMenu {
     protected AverageResidential averageResidential;
     protected ResidentialMarketValuePerCapita residentialMarketValuePerCapita;
 
-    // TODO: Add back ResidentialMarketValuePerCapita rmvpc as last parameter
-    public MainMenu(TotalPopulation tp, FinesPerCapita fpc, AverageResidential ar) {
+    public MainMenu(TotalPopulation tp, FinesPerCapita fpc, AverageResidential ar, ResidentialMarketValuePerCapita rmvpc) {
         totalPopulation = tp;
         finesPerCapita = fpc;
         averageResidential = ar;
-//        residentialMarketValuePerCapita = rmvpc;
+        residentialMarketValuePerCapita = rmvpc;
     }
 
     public void start() {
@@ -52,12 +51,12 @@ public class MainMenu {
                 for (String line : finesPerZip) {
                     System.out.println(line);
                 }
-            } else if (selection == 3 || selection == 4) {
+            } else if (selection == 3 || selection == 4 || selection == 5) {
                 System.out.println("Please enter a ZIP code:");
                 String zip = in.nextLine();
 
                 if (zip == null || zip.isBlank() || zip.isEmpty()) {
-                    break;
+                    continue;
                 }
                 try {
                     int i = Integer.parseInt(zip);
@@ -65,13 +64,15 @@ public class MainMenu {
                         throw new NumberFormatException();
                     }
                 } catch (NumberFormatException nfe) {
-                    break;
+                    continue;
                 }
 
                 if (selection == 3) {
                     System.out.println(averageResidential.getAverageResidential(ResidentialMode.MARKET_VALUE, zip));
                 } else if (selection == 4) {
                     System.out.println(averageResidential.getAverageResidential(ResidentialMode.TOTAL_LIVABLE_AREA, zip));
+                } else if (selection == 5) {
+                    System.out.println(residentialMarketValuePerCapita.getMarketValuePerCapita(zip));
                 }
             }
 
