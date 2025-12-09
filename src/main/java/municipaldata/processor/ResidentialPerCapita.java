@@ -17,6 +17,9 @@ public class ResidentialPerCapita {
     }
 
     public int getPerCapita(ResidentialMode mode, String zip) {
+        if (zip == null || zip.isEmpty()) {
+            return 0;
+        }
         if (zip.length() < 5) {
             return 0;
         }

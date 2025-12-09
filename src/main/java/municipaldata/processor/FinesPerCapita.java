@@ -39,11 +39,16 @@ public class FinesPerCapita {
             double totalFines = 0.0;
 
             for (ParkingViolation violation : violations) {
-                if (!violation.getState().equals("PA")) {
+                if (!"PA".equals(violation.getState())) {
                     continue;
                 }
 
-                totalFines += violation.getFine();
+                Float fine = violation.getFine();
+                if (fine == null) {
+                    continue;
+                }
+
+                totalFines += fine;
             }
 
             if (totalFines == 0.0 || pop == 0) {

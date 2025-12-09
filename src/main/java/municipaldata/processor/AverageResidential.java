@@ -15,6 +15,10 @@ public class AverageResidential {
     }
 
     public int getAverageResidential(ResidentialMode mode, String zip) {
+        if (zip == null || zip.isEmpty()) {
+            return 0;
+        }
+        
         if (zip.length() < 5) {
             return 0;
         }
