@@ -30,7 +30,7 @@ public class GetResidentialPerCapitaTest {
             }
         };
         ResidentialPerCapita rpc = new ResidentialPerCapita(pr, pvr);
-        int result = rpc.getPerCapita(ResidentialMode.MEDIAN, null);
+        int result = rpc.getPerCapita(ResidentialMode.MARKET_VALUE, null);
         assertEquals(0, result);
     }
 
@@ -55,7 +55,7 @@ public class GetResidentialPerCapitaTest {
             }
         };
         ResidentialPerCapita rpc = new ResidentialPerCapita(pr, pvr);
-        int result = rpc.getPerCapita(ResidentialMode.MEDIAN, "");
+        int result = rpc.getPerCapita(ResidentialMode.MARKET_VALUE, "");
         assertEquals(0, result);
     }
 
@@ -80,7 +80,7 @@ public class GetResidentialPerCapitaTest {
             }
         };
         ResidentialPerCapita rpc = new ResidentialPerCapita(pr, pvr);
-        int result = rpc.getPerCapita(ResidentialMode.MEDIAN, "9899");
+        int result = rpc.getPerCapita(ResidentialMode.MARKET_VALUE, "9899");
         assertEquals(0, result);
     }
 
@@ -105,7 +105,7 @@ public class GetResidentialPerCapitaTest {
             }
         };
         ResidentialPerCapita rpc = new ResidentialPerCapita(pr, pvr);
-        int result = rpc.getPerCapita(ResidentialMode.MEDIAN, "989999099");
+        int result = rpc.getPerCapita(ResidentialMode.MARKET_VALUE, "989999099");
         assertEquals(2, result);    
     }
 
@@ -131,7 +131,7 @@ public class GetResidentialPerCapitaTest {
             }
         };
         ResidentialPerCapita rpc = new ResidentialPerCapita(pr, pvr);
-        int result = rpc.getPerCapita(ResidentialMode.MEDIAN, "98999");
+        int result = rpc.getPerCapita(ResidentialMode.MARKET_VALUE, "98999");
         assertEquals(5, result);    
     }
 
@@ -155,7 +155,7 @@ public class GetResidentialPerCapitaTest {
             }
         };
         ResidentialPerCapita rpc = new ResidentialPerCapita(pr, pvr);
-        int result = rpc.getPerCapita(ResidentialMode.MEDIAN, "98999");
+        int result = rpc.getPerCapita(ResidentialMode.MARKET_VALUE, "98999");
         assertEquals(0, result);    
     }
 
@@ -180,7 +180,7 @@ public class GetResidentialPerCapitaTest {
             }
         };
         ResidentialPerCapita rpc = new ResidentialPerCapita(pr, pvr);
-        int result = rpc.getPerCapita(ResidentialMode.MEDIAN, "98999");
+        int result = rpc.getPerCapita(ResidentialMode.MARKET_VALUE, "98999");
         assertEquals(0, result);    
     }
 
@@ -202,7 +202,7 @@ public class GetResidentialPerCapitaTest {
             }
         };
         ResidentialPerCapita rpc = new ResidentialPerCapita(pr, pvr);
-        int result = rpc.getPerCapita(ResidentialMode.MEDIAN, "98999");
+        int result = rpc.getPerCapita(ResidentialMode.MARKET_VALUE, "98999");
         assertEquals(0, result);    
     }
 
@@ -228,7 +228,7 @@ public class GetResidentialPerCapitaTest {
             }
         };
         ResidentialPerCapita rpc = new ResidentialPerCapita(pr, pvr);
-        int result = rpc.getPerCapita(ResidentialMode.MEDIAN, "98999");
+        int result = rpc.getPerCapita(ResidentialMode.MARKET_VALUE, "98999");
         assertEquals(10, result);    
     }
 
@@ -254,8 +254,8 @@ public class GetResidentialPerCapitaTest {
             }
         };
         ResidentialPerCapita rpc = new ResidentialPerCapita(pr, pvr);
-        int result1 = rpc.getPerCapita(ResidentialMode.MEDIAN, "98999");
-        int result2 = rpc.getPerCapita(ResidentialMode.MEDIAN, "98999");
+        int result1 = rpc.getPerCapita(ResidentialMode.MARKET_VALUE, "98999");
+        int result2 = rpc.getPerCapita(ResidentialMode.MARKET_VALUE, "98999");
         assertEquals(10, result1);
         assertEquals(10, result2);
     }
