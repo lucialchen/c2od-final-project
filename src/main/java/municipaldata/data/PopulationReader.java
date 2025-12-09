@@ -28,6 +28,9 @@ public class PopulationReader {
                 try {
                     String zip = fields[0];
                     int population = Integer.parseInt(fields[1]);
+                    if (population <= 0 || zip.isEmpty() || zip.length() != 5) {
+                        continue;
+                    }
                     populationData.put(zip, population);
                 } catch (NumberFormatException e) {
                     continue;
