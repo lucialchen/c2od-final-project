@@ -106,7 +106,7 @@ public class GetResidentialPerCapitaTest {
         };
         ResidentialPerCapita rpc = new ResidentialPerCapita(pr, pvr);
         int result = rpc.getPerCapita(ResidentialMode.MARKET_VALUE, "989999099");
-        assertEquals(2, result);    
+        assertEquals(2, result);  
     }
 
     @Test
@@ -258,6 +258,31 @@ public class GetResidentialPerCapitaTest {
         int result2 = rpc.getPerCapita(ResidentialMode.MARKET_VALUE, "98999");
         assertEquals(10, result1);
         assertEquals(10, result2);
+    }
+
+    @Test
+    void testRecordTotalZeroWithValidPop() {
+        PopulationReader pr = new PopulationReader("file") {
+            @Override
+            public Map<String, Integer> getPopulationData() {
+                Map<String, Integer> map = new TreeMap<>();
+                map.put("98999", 100);
+                return map;
+            }
+        };
+        PropertyValueReader pvr = new PropertyValueReader("file") {
+            @Override
+            public Map<String, ArrayList<PropertyValue>> getPropertyValues() {
+                Map<String, ArrayList<PropertyValue>> map = new TreeMap<>();
+                ArrayList<PropertyValue> values = new ArrayList<>();
+                values.add(new PropertyValue(null, null, "98999"));
+                map.put("98999", values);
+                return map;
+            }
+        };
+        ResidentialPerCapita rpc = new ResidentialPerCapita(pr, pvr);
+        int result = rpc.getPerCapita(ResidentialMode.MARKET_VALUE, "98999");
+        assertEquals(0, result);
     }
 
 }
