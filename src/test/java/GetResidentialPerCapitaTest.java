@@ -2,7 +2,6 @@ import municipaldata.common.*;
 import municipaldata.data.*;
 import municipaldata.processor.*;
 
-import java.util.TreeMap;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import java.util.*;
@@ -97,6 +96,7 @@ public class GetResidentialPerCapitaTest {
         PropertyValueReader pvr = new PropertyValueReader("file") {
             @Override
             public Map<String, ArrayList<PropertyValue>> getPropertyValues() {
+                System.out.println("getPropertyValues() called!"); 
                 Map<String, ArrayList<PropertyValue>> map = new TreeMap<>();
                 ArrayList<PropertyValue> values = new ArrayList<>();
                 values.add(new PropertyValue(200.0, 150.0, "98999"));
