@@ -61,6 +61,7 @@ public class TotalResidentialCache {
                     .stream()
                     .filter(pv -> pv != null)
                     .map(pv -> pv.getData(mode))
+                    .filter(d -> d != null)
                     .mapToDouble(d -> d)
                     .summaryStatistics();
 
