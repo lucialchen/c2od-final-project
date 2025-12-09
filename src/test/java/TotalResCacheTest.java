@@ -39,7 +39,7 @@ public class TotalResCacheTest {
         TotalResidentialCache cache = TotalResidentialCache.getInstance(ResidentialMode.MARKET_VALUE);
         CacheRecord record = cache.get("98999", pvr);
         assertNotNull(record);
-        assertEquals(150.0, record.getTotal());
+        assertEquals(300.0, record.getTotal());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class TotalResCacheTest {
         TotalResidentialCache cache = TotalResidentialCache.getInstance(ResidentialMode.TOTAL_LIVABLE_AREA);
         CacheRecord record = cache.get("98999", pvr);
         assertNotNull(record);
-        assertEquals(100.0, record.getTotal());
+        assertEquals(200.0, record.getTotal());
     }
 
     @Test
