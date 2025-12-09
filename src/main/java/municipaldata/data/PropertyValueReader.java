@@ -23,7 +23,6 @@ public class PropertyValueReader {
             String header = br.readLine();
 
             if (header == null) {
-                System.err.println("Empty property value file: " + filePath);
                 return map;
             }
 
@@ -44,15 +43,11 @@ public class PropertyValueReader {
             }
 
             if (marketIdx == -1 || livAreaIdx == -1 || zipIdx == -1) {
-                System.err.println("Missing required fields in property value file header: " + filePath);
                 return map;
             }
 
             String line;
-            int lineNum = 1;
             while ((line = br.readLine()) != null) {
-                lineNum++;
-
                 if (line.trim().isEmpty()) {
                     continue;
                 }
@@ -65,15 +60,11 @@ public class PropertyValueReader {
                         try {
                             marketValue = Double.parseDouble(mv);
                             if (marketValue <= 0) {
-                                System.err.println("Error: Non-positive market value at line " + lineNum + ": " + mv);
                                 marketValue = null;
                             }
                         } catch (NumberFormatException e) {
-                            System.err.println("Error: Invalid market value at line " + lineNum + ": " + mv);
                             marketValue = null;
                         }
-                    } else {
-                        System.err.println("Error: Missing market value at line " + lineNum);
                     }
                 }
 
@@ -84,15 +75,11 @@ public class PropertyValueReader {
                         try {
                             livableArea = Double.parseDouble(la);
                             if (livableArea <= 0) {
-                                System.err.println("Error: Non-positive livable area at line " + lineNum + ": " + la);
                                 livableArea = null;
                             }
                         } catch (NumberFormatException e) {
-                            System.err.println("Error: Invalid livable area at line " + lineNum + ": " + la);
                             livableArea = null;
                         }
-                    } else {
-                        System.err.println("Error: Missing livable area at line " + lineNum);
                     }
                 }
 
@@ -102,11 +89,9 @@ public class PropertyValueReader {
                     if (zip.length() >= 5) {
                         zip = zip.substring(0, 5);
                     } else {
-                        System.err.println("Error: Invalid zip code at line " + lineNum + ": " + zip);
                         continue;
                     }
                 } else {
-                    System.err.println("Error: Missing zip code at line " + lineNum);
                     continue;
                 }
                     
