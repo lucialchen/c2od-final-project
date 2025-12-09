@@ -1,6 +1,6 @@
-import municipaldata.common.ResidentialMode;
-import municipaldata.data.PopulationReader;
-import municipaldata.data.PropertyValueReader;
+import municipaldata.common.*;
+import municipaldata.data.*;
+import municipaldata.processor.*;
 
 import java.util.TreeMap;
 import static org.junit.jupiter.api.Assertions.*;

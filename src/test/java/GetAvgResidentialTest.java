@@ -1,7 +1,9 @@
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-import municipaldata.processor.AverageResidential;
+import municipaldata.common.*;
+import municipaldata.data.*;
+import municipaldata.processor.*;
 
 import java.util.*;
 

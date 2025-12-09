@@ -1,5 +1,6 @@
-import municipaldata.data.PopulationReader;
-import municipaldata.processor.TotalPopulation;
+import municipaldata.common.*;
+import municipaldata.data.*;
+import municipaldata.processor.*;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 

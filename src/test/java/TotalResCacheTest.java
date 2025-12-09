@@ -1,9 +1,9 @@
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-import municipaldata.common.PropertyValue;
-import municipaldata.common.ResidentialMode;
-import municipaldata.data.PropertyValueReader;
+import municipaldata.common.*;
+import municipaldata.data.*;
+import municipaldata.processor.*;
 
 import java.util.*;
 
