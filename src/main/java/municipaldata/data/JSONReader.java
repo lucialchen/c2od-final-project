@@ -81,6 +81,10 @@ public class JSONReader implements ParkViolationFileType {
                     zip = (String) violationJSON.get("zip");
                 }
 
+                if (zip == null || zip.isEmpty()) {
+                    continue;
+                }
+
                 ParkingViolation violation = new ParkingViolation(timeStamp, fine, description, vehID, state, violID, zip);
                 data.add(violation);
             }
