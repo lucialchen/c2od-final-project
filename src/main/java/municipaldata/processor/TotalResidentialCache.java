@@ -34,11 +34,11 @@ public class TotalResidentialCache {
         }
     }
 
-    public CacheRecord check(String zip) {
+    private CacheRecord check(String zip) {
         return map.get(zip);
     }
 
-    public void update(String zip, CacheRecord val) {
+    private void update(String zip, CacheRecord val) {
         map.put(zip, val);
     }
 

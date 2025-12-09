@@ -1,5 +1,3 @@
-package test;
-
 import municipaldata.common.ResidentialMode;
 import municipaldata.data.PopulationReader;
 import municipaldata.data.PropertyValueReader;

@@ -1,4 +1,3 @@
-package test;
 import municipaldata.data.PopulationReader;
 import municipaldata.processor.TotalPopulation;
 import static org.junit.jupiter.api.Assertions.*;
