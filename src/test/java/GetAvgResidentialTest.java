@@ -108,5 +108,23 @@ public class GetAvgResidentialTest {
         int result = avgRes.getAverageResidential(ResidentialMode.MARKET_VALUE, "90000");
         assertEquals(0, result);
     }
+
+    @Test
+    void testNullPropertyValue() {
+        PropertyValueReader pvr = new PropertyValueReader("file") {
+            @Override
+            public Map<String, ArrayList<PropertyValue>> getPropertyValues() {
+                Map<String, ArrayList<PropertyValue>> map = new TreeMap<>();
+                ArrayList<PropertyValue> values = new ArrayList<>();
+                values.add(new PropertyValue(100.0, 1500.0, "90000"));
+                values.add(null);
+                map.put("90000", values);
+                return map;
+            }
+        };
+        municipaldata.processor.AverageResidential avgRes = new municipaldata.processor.AverageResidential(pvr);
+        int result = avgRes.getAverageResidential(ResidentialMode.MARKET_VALUE, "90000");
+        assertEquals(100.0, result);
+    }
             
 }
