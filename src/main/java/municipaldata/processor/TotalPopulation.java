@@ -17,6 +17,7 @@ public class TotalPopulation {
         totalPopulation = populationReader.getPopulationData()
                 .values()
                 .stream()
+                .filter(p -> p != null)
                 .reduce(0, (total, next) -> total + next);
 
         return totalPopulation;
