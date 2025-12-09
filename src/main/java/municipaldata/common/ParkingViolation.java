@@ -2,15 +2,15 @@ package municipaldata.common;
 
 public class ParkingViolation {
     String timeStamp;
-    float fine;
+    Float fine;
     String description;
-    int vehID;
+    Integer vehID;
     String state;
-    int violID;
+    Integer violID;
     String zip;
 
-    public ParkingViolation(String timeStamp, float fine, String description, int vehID, 
-    String state, int violID, String zip) {
+    public ParkingViolation(String timeStamp, Float fine, String description, Integer vehID, 
+    String state, Integer violID, String zip) {
         this.timeStamp = timeStamp;
         this.fine = fine;
         this.description = description;
@@ -24,7 +24,7 @@ public class ParkingViolation {
         return zip;
     }
 
-    public float getFine() {
+    public Float getFine() {
         return fine;
     }
 

@@ -22,6 +22,11 @@ public class ParkingViolationReader {
         }
 
         ArrayList<ParkingViolation> violations = parkViolationFileType.readData();
+        if (violations == null) {
+            map = new TreeMap<>();
+            return;
+        }
+        
         map = new TreeMap<>();
 
         for (ParkingViolation pv : violations) {
