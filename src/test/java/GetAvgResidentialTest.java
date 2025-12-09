@@ -22,7 +22,7 @@ public class GetAvgResidentialTest {
             }
         };
         AverageResidential avgRes = new AverageResidential(pvr);
-        int result = avgRes.getAverageResidential(municipaldata.common.ResidentialMode.MEDIAN, null);
+        int result = avgRes.getAverageResidential(ResidentialMode.MARKET_VALUE, null);
         assertEquals(0, result);
     }
 
@@ -39,7 +39,7 @@ public class GetAvgResidentialTest {
             }
         };
         AverageResidential avgRes = new AverageResidential(pvr);
-        int result = avgRes.getAverageResidential(municipaldata.common.ResidentialMode.MEDIAN, "");
+        int result = avgRes.getAverageResidential(ResidentialMode.MARKET_VALUE, "");
         assertEquals(0, result);
     }
 
@@ -56,7 +56,7 @@ public class GetAvgResidentialTest {
             }
         };
         AverageResidential avgRes = new AverageResidential(pvr);
-        int result = avgRes.getAverageResidential(municipaldata.common.ResidentialMode.MEDIAN, "9899");
+        int result = avgRes.getAverageResidential(ResidentialMode.MARKET_VALUE, "9899");
         assertEquals(0, result);
     }
 
@@ -73,7 +73,7 @@ public class GetAvgResidentialTest {
             }
         };
         municipaldata.processor.AverageResidential avgRes = new municipaldata.processor.AverageResidential(pvr);
-        int result = avgRes.getAverageResidential(municipaldata.common.ResidentialMode.MEDIAN, "989999099");
+        int result = avgRes.getAverageResidential(ResidentialMode.MARKET_VALUE, "989999099");
         assertEquals(100, result);
     }
 
@@ -91,7 +91,7 @@ public class GetAvgResidentialTest {
             }
         };
         municipaldata.processor.AverageResidential avgRes = new municipaldata.processor.AverageResidential(pvr);
-        int result = avgRes.getAverageResidential(municipaldata.common.ResidentialMode.MEDIAN, "89888");
+        int result = avgRes.getAverageResidential(ResidentialMode.MARKET_VALUE, "89888");
         assertEquals(150, result);
     }
 
@@ -105,7 +105,7 @@ public class GetAvgResidentialTest {
             }
         };
         municipaldata.processor.AverageResidential avgRes = new municipaldata.processor.AverageResidential(pvr);
-        int result = avgRes.getAverageResidential(municipaldata.common.ResidentialMode.MEDIAN, "90000");
+        int result = avgRes.getAverageResidential(ResidentialMode.MARKET_VALUE, "90000");
         assertEquals(0, result);
     }
             
