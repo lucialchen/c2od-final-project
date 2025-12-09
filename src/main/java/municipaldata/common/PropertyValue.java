@@ -2,8 +2,8 @@ package municipaldata.common;
 
 public class PropertyValue {
 
-    double market_value;
-    double total_livable_area;
+    Double market_value;
+    Double total_livable_area;
     String zip_code;
 
     public PropertyValue(Double market_value, Double total_livable_area, String zip_code) {

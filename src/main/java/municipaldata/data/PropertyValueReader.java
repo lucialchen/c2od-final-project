@@ -16,8 +16,6 @@ public class PropertyValueReader {
         map = readData();
     }
 
-    // TODO: Make sure error handling as specified works so that it properly ignores the missing/incorrect values while retaining the rest
-    // I.e., make the PropertyValue object for each pass and fill in the blanks with nulls if needed while reading data
     private Map<String, ArrayList<PropertyValue>> readData()  {
         Map<String, ArrayList<PropertyValue>> map = new TreeMap<>();
 
@@ -66,6 +64,10 @@ public class PropertyValueReader {
                     if (!mv.isEmpty()) {
                         try {
                             marketValue = Double.parseDouble(mv);
+                            if (marketValue <= 0) {
+                                System.err.println("Error: Non-positive market value at line " + lineNum + ": " + mv);
+                                marketValue = null;
+                            }
                         } catch (NumberFormatException e) {
                             System.err.println("Error: Invalid market value at line " + lineNum + ": " + mv);
                             marketValue = null;
@@ -81,6 +83,10 @@ public class PropertyValueReader {
                     if (!la.isEmpty()) {
                         try {
                             livableArea = Double.parseDouble(la);
+                            if (livableArea <= 0) {
+                                System.err.println("Error: Non-positive livable area at line " + lineNum + ": " + la);
+                                livableArea = null;
+                            }
                         } catch (NumberFormatException e) {
                             System.err.println("Error: Invalid livable area at line " + lineNum + ": " + la);
                             livableArea = null;
