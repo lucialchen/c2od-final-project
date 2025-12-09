@@ -56,20 +56,13 @@ public class TotalResidentialCache {
         // Referenced https://www.geeksforgeeks.org/java/java-util-doublesummarystatistics-class-with-examples/
         if (propertyValues != null) {
             DoubleSummaryStatistics dss;
-            if (mode == ResidentialMode.MARKET_VALUE) {
-                dss = propertyValues
-                        .stream()
-                        .map(pv -> pv.getMarketValue())
-                        .mapToDouble(d -> d)
-                        .summaryStatistics();
-            } else
-            {
-                dss = propertyValues
-                        .stream()
-                        .map(pv -> pv.getTotalLivableArea())
-                        .mapToDouble(d -> d)
-                        .summaryStatistics();
-            }
+
+            dss = propertyValues
+                    .stream()
+                    .map(pv -> pv.getData(mode))
+                    .mapToDouble(d -> d)
+                    .summaryStatistics();
+
             record = new CacheRecord(dss.getCount(), dss.getSum());
         }
         else {

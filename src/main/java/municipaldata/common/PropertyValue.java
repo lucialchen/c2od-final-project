@@ -16,11 +16,11 @@ public class PropertyValue {
         return zip_code;
     }
 
-    public double getMarketValue() {
-        return market_value;
-    }
-
-    public double getTotalLivableArea() {
-        return total_livable_area;
+    public double getData(ResidentialMode m) {
+        if (m == ResidentialMode.MARKET_VALUE) {
+            return market_value;
+        } else {
+            return total_livable_area;
+        }
     }
 }
