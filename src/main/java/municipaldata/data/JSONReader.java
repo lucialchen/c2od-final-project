@@ -32,8 +32,8 @@ public class JSONReader implements ParkViolationFileType {
                 Integer violID = null;
                 String zip = null;
 
-                if (violationJSON.containsKey("timeStamp")) {
-                    timeStamp = (String) violationJSON.get("timeStamp");
+                if (violationJSON.containsKey("date")) {
+                    timeStamp = (String) violationJSON.get("date");
                 }
 
                 if (violationJSON.containsKey("fine")) {
@@ -47,13 +47,13 @@ public class JSONReader implements ParkViolationFileType {
                     }
                 }
 
-                if (violationJSON.containsKey("description")) {
-                    description = (String) violationJSON.get("description");
+                if (violationJSON.containsKey("violation")) {
+                    description = (String) violationJSON.get("violation");
                 }
 
-                if (violationJSON.containsKey("vehID")) {
+                if (violationJSON.containsKey("plate_id")) {
                     try {
-                        vehID = Integer.parseInt(violationJSON.get("vehID").toString());
+                        vehID = Integer.parseInt(violationJSON.get("plate_id").toString());
                         if (vehID < 0) {
                             vehID = null;
                         }
@@ -66,9 +66,9 @@ public class JSONReader implements ParkViolationFileType {
                     state = (String) violationJSON.get("state");
                 }
 
-                if (violationJSON.containsKey("violID")) {
+                if (violationJSON.containsKey("ticket_number")) {
                     try {
-                        violID = Integer.parseInt(violationJSON.get("violID").toString());
+                        violID = Integer.parseInt(violationJSON.get("ticket_number").toString());
                         if (violID < 0) {
                             violID = null;
                         }
@@ -77,8 +77,8 @@ public class JSONReader implements ParkViolationFileType {
                     }
                 }
 
-                if (violationJSON.containsKey("zip")) {
-                    zip = (String) violationJSON.get("zip");
+                if (violationJSON.containsKey("zip_code")) {
+                    zip = (String) violationJSON.get("zip_code");
                 }
 
                 if (zip == null || zip.isEmpty()) {
