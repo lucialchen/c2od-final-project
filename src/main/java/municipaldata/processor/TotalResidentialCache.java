@@ -59,6 +59,7 @@ public class TotalResidentialCache {
 
             dss = propertyValues
                     .stream()
+                    .filter(pv -> pv != null)
                     .map(pv -> pv.getData(mode))
                     .mapToDouble(d -> d)
                     .summaryStatistics();
